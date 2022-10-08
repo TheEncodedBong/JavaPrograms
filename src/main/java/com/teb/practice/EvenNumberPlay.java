@@ -1,4 +1,4 @@
-package com.teb.practice.programs;
+package com.teb.practice;
 
 import java.util.Scanner;
 
