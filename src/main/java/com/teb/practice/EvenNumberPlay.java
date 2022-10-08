@@ -8,9 +8,9 @@ public class EvenNumberPlay {
 
 		Scanner scan = new Scanner(System.in);
 
-		System.out.println("Enter the starting point: ");
+		System.out.print("Enter the starting point: ");
 		int start = scan.nextInt();
-		System.out.println("Enter the limit: ");
+		System.out.print("Enter the limit: ");
 		int limit = scan.nextInt();
 
 		/* If the starting point is odd, move to next even number */
@@ -23,7 +23,7 @@ public class EvenNumberPlay {
 		System.out.println("Choose your operation");
 		System.out.println("1. Add");
 		System.out.println("2. Multiply");
-		System.out.println("Your choice: ");
+		System.out.print("Your choice: ");
 		int choice = scan.nextInt();
 
 		switch (choice) {
