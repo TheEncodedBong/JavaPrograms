@@ -1,18 +1,9 @@
-package com.teb.practice;
+package com.teb.practice.numbers;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class EvenArrayIndex {
-
-	public static void main(String[] args) {
-
-		int[] arrayOne = { 1, 100, 50, -51, 1, 1 };
-		int[] arrayTwo = { 20, 10, -80, 100, 10, 15, 35 };
-
-		System.out.println("Result index: " + getEvenIndex(arrayOne));
-		System.out.println("Result index (using Stream): " + getEvenIndexUsingStream(arrayTwo));
-	}
 
 	private static int getEvenIndex(int[] inputArray) {
 
@@ -47,6 +38,15 @@ public class EvenArrayIndex {
 		}
 
 		return -1;
+	}
+
+	public static void main(String[] args) {
+
+		int[] arrayOne = { 1, 100, 50, -51, 1, 1 };
+		int[] arrayTwo = { 20, 10, -80, 100, 10, 15, 35 };
+
+		System.out.println("Result index: " + getEvenIndex(arrayOne));
+		System.out.println("Result index (using Stream): " + getEvenIndexUsingStream(arrayTwo));
 	}
 
 }

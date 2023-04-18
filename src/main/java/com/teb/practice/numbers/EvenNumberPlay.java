@@ -1,16 +1,40 @@
-package com.teb.practice;
+package com.teb.practice.numbers;
 
 import java.util.Scanner;
 
 public class EvenNumberPlay {
 
+	private static int evenAdd(int start, int limit) {
+
+		int result = start;
+
+		while (start < limit) {
+			start += 2;
+			result += start;
+		}
+
+		return result;
+	}
+
+	private static int evenMultiply(int start, int limit) {
+
+		int result = start;
+
+		while (start < limit) {
+			start += 2;
+			result *= start;
+		}
+
+		return result;
+	}
+
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);
 
-		System.out.print("Enter the starting point: ");
+		System.out.print("Enter the first number: ");
 		int start = scan.nextInt();
-		System.out.print("Enter the limit: ");
+		System.out.print("Enter the last number: ");
 		int limit = scan.nextInt();
 
 		/* If the starting point is odd, move to next even number */
@@ -40,25 +64,4 @@ public class EvenNumberPlay {
 		scan.close();
 	}
 
-	private static int evenAdd(int start, int limit) {
-		int result = start;
-
-		while (start < limit) {
-			start += 2;
-			result += start;
-		}
-
-		return result;
-	}
-
-	private static int evenMultiply(int start, int limit) {
-		int result = start;
-
-		while (start < limit) {
-			start += 2;
-			result *= start;
-		}
-
-		return result;
-	}
 }

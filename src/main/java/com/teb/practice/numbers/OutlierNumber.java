@@ -1,17 +1,8 @@
-package com.teb.practice;
+package com.teb.practice.numbers;
 
 import java.util.Arrays;
 
 public class OutlierNumber {
-
-	public static void main(String[] args) {
-
-		int[] arrayOne = { 2, 6, 8, -10, 3 };
-		int[] arrayTwo = { 206, 121, 7, 17, 1901, 221, 7, 1, 351, 1, 71 };
-
-		System.out.println("Outlier value: " + findOutlier(arrayOne));
-		System.out.println("Outlier value (using Stream): " + findOutlierUsingStream(arrayTwo));
-	}
 
 	static int findOutlier(int[] integers) {
 
@@ -43,4 +34,14 @@ public class OutlierNumber {
 
 		return Arrays.stream(integers).parallel().filter(n -> Math.abs(n) % 2 == mod).findFirst().getAsInt();
 	}
+
+	public static void main(String[] args) {
+
+		int[] arrayOne = { 2, 6, 8, -10, 3 };
+		int[] arrayTwo = { 206, 121, 7, 17, 1901, 221, 7, 1, 351, 1, 71 };
+
+		System.out.println("Outlier value: " + findOutlier(arrayOne));
+		System.out.println("Outlier value (using Stream): " + findOutlierUsingStream(arrayTwo));
+	}
+
 }

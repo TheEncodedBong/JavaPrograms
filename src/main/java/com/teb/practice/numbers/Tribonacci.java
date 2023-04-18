@@ -1,8 +1,39 @@
-package com.teb.practice;
+package com.teb.practice.numbers;
 
 import java.util.Scanner;
 
 public class Tribonacci {
+
+	private static int[] getTribonacciSeries(int[] start, int limit) {
+
+		int[] result = new int[limit];
+		int sum = 0;
+
+		/* Returns empty array when limit is zero */
+		if (limit == 0)
+			return result;
+
+		/* Returns data entries from start array corresponding to limit */
+		if (limit < 3) {
+			for (int i = 0; i < limit; i++)
+				result[i] = start[i];
+			return result;
+		}
+
+		/* Initializing result array with start array */
+		for (int i = 0; i < start.length; i++) {
+			sum += start[i];
+			result[i] = start[i];
+		}
+
+		/* Adding rest of the relevant data the result array */
+		for (int i = start.length; i < limit; i++) {
+			result[i] = sum;
+			sum += result[i - 1] + result[i - 2];
+		}
+
+		return result;
+	}
 
 	public static void main(String[] args) {
 
@@ -48,34 +79,4 @@ public class Tribonacci {
 		scan.close();
 	}
 
-	private static int[] getTribonacciSeries(int[] start, int limit) {
-
-		int[] result = new int[limit];
-		int sum = 0;
-
-		/* Returns empty array when limit is zero */
-		if (limit == 0)
-			return result;
-
-		/* Returns data entries from start array corresponding to limit */
-		if (limit < 3) {
-			for (int i = 0; i < limit; i++)
-				result[i] = start[i];
-			return result;
-		}
-
-		/* Initializing result array with start array */
-		for (int i = 0; i < start.length; i++) {
-			sum += start[i];
-			result[i] = start[i];
-		}
-
-		/* Adding rest of the relevant data the result array */
-		for (int i = start.length; i < limit; i++) {
-			result[i] = sum;
-			sum += result[i - 1] + result[i - 2];
-		}
-
-		return result;
-	}
 }
