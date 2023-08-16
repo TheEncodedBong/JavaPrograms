@@ -40,8 +40,7 @@ public class EncryptionUsingAESNoPadding {
 			encryptedCipher = Cipher.getInstance("AES/GCM/NoPadding");
 			encryptedCipher.init(Cipher.ENCRYPT_MODE, secretKey);
 
-			byte[] encryptedBytes = encryptedCipher.doFinal(dataInBytes);
-			return encryptedBytes;
+			return encryptedCipher.doFinal(dataInBytes);
 		} catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException
 				| BadPaddingException e) {
 			return e.getMessage().getBytes();

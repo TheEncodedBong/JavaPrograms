@@ -43,7 +43,7 @@ public class EncryptionUsingAESPadding {
 	private static IvParameterSpec generateIv() {
 
 		byte[] ivSpec = new byte[16];
-		/* Generate random bytes to initialize the cipher */
+		/* Generate random bytes to initialise the cipher */
 		new SecureRandom().nextBytes(ivSpec);
 		return new IvParameterSpec(ivSpec);
 	}
@@ -53,8 +53,7 @@ public class EncryptionUsingAESPadding {
 		try {
 			Cipher cipher = Cipher.getInstance(ENCRYPT_PADDING);
 			cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivSpec);
-			byte[] encryptedBytes = cipher.doFinal(textToEncrypt.getBytes());
-			return encryptedBytes;
+			return cipher.doFinal(textToEncrypt.getBytes());
 		} catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException
 				| InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
 			return e.getMessage().getBytes();
