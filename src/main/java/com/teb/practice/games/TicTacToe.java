@@ -1,14 +1,29 @@
 package com.teb.practice.games;
 
+import static java.lang.System.exit;
+import static java.lang.System.out;
+
 import java.util.Scanner;
 
 public class TicTacToe {
 
     private static final String[][] GAME_BOARD = new String[3][3];
     private static final String SPACE = " ";
+    private static final Scanner SCAN = new Scanner(System.in);
 
     public static void main(String[] args) {
+        out.printf("Welcome to Tic-Tac-Toe!%n");
         runGame();
+
+        out.print("\nDo you want to play again? (y/n): ");
+        String option = SCAN.nextLine();
+        if (option.equals("y")) {
+            runGame();
+        } else if (option.equals("n")) {
+            out.printf("Thank you for playing!%n");
+        } else {
+            exit(0);
+        }
     }
 
     private static void runGame() {
@@ -17,7 +32,6 @@ public class TicTacToe {
 
         int inputCounter = 1;
         String input = "";
-
         while (inputCounter >= 1 && inputCounter <= 9) {
             if (inputCounter % 2 == 0) {
                 input = "O";
@@ -40,34 +54,31 @@ public class TicTacToe {
     private static void printCurrentBoard() {
         for (int i = 0; i < 3; i++) {
             if (i > 0) {
-                System.out.printf("- - - - -%n");
+                out.printf("- - - - -%n");
             }
             for (int j = 0; j < 3; j++) {
-                System.out.print(GAME_BOARD[i][j]);
+                out.print(GAME_BOARD[i][j]);
                 if (j < 2) {
-                    System.out.print(" | ");
+                    out.print(" | ");
                 }
                 if (j == 2) {
-                    System.out.printf("%n");
+                    out.printf("%n");
                 }
             }
         }
     }
 
     private static int getUserInput(String input, int inputCounter) {
-        Scanner scan = new Scanner(System.in);
-
-        System.out.printf("%nIt is %s's turn%n", input);
-        System.out.printf("Please enter the row then the column, each from 0, 1, or 2, separated by space%n");
-        String rowAndColumn = scan.nextLine();
-
+        out.printf("%nIt is %s's turn%n", input);
+        out.printf("Please enter the row then the column, each from 0, 1, or 2, separated by space%n");
+        String rowAndColumn = SCAN.nextLine();
         if (cellAlreadyOccupied(input, rowAndColumn)) {
-            System.out.printf("The cell is already occupied, please select a different cell%n");
+            out.printf("The cell is already occupied, please select a different cell%n");
             return inputCounter;
         } else {
             printCurrentBoard();
             if (getWinner()) {
-                System.out.printf("%nCongratulations! The winner is: %s%n", input);
+                out.printf("%nCongratulations! The winner is: %s%n", input);
                 inputCounter = -1;
             }
             return ++inputCounter;
@@ -86,8 +97,7 @@ public class TicTacToe {
     }
 
     private static boolean getWinner() {
-        boolean winner;
-        winner = checkRow();
+        boolean winner = checkRow();
         if (!winner) {
             winner = checkColumn();
         }
@@ -102,7 +112,6 @@ public class TicTacToe {
             String a = GAME_BOARD[i][0];
             String b = GAME_BOARD[i][1];
             String c = GAME_BOARD[i][2];
-
             if (!SPACE.equals(a) && a.equals(b) && b.equals(c)) {
                 return true;
             }
@@ -115,7 +124,6 @@ public class TicTacToe {
             String a = GAME_BOARD[0][j];
             String b = GAME_BOARD[1][j];
             String c = GAME_BOARD[2][j];
-
             if (!SPACE.equals(a) && a.equals(b) && b.equals(c)) {
                 return true;
             }
@@ -131,7 +139,6 @@ public class TicTacToe {
                 String c = GAME_BOARD[2][2];
                 String d = GAME_BOARD[0][2];
                 String e = GAME_BOARD[2][0];
-
                 if ((!SPACE.equals(a) && a.equals(b) && b.equals(c)) || (!SPACE.equals(d) && d.equals(b) && b.equals(e))) {
                     return true;
                 }
