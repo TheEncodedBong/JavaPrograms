@@ -13,20 +13,23 @@ public class TicTacToe {
 
     public static void main(String[] args) {
         out.printf("Welcome to Tic-Tac-Toe!%n");
-        runGame();
+        playTicTacToe();
 
-        out.print("\nDo you want to play again? (y/n): ");
-        String option = SCAN.nextLine();
-        if (option.equals("y")) {
-            runGame();
-        } else if (option.equals("n")) {
-            out.printf("Thank you for playing!%n");
-        } else {
-            exit(0);
+        while (true) {
+            out.printf("%nDo you want to play again? (y/n): ");
+            String option = SCAN.next();
+            if (option.equals("y")) {
+                playTicTacToe();
+            } else if (option.equals("n")) {
+                out.printf("Thank you for playing!%n");
+                break;
+            } else {
+                exit(0);
+            }
         }
     }
 
-    private static void runGame() {
+    private static void playTicTacToe() {
         initialiseGameBoard();
         printCurrentBoard();
 
@@ -57,7 +60,7 @@ public class TicTacToe {
                 out.printf("- - - - -%n");
             }
             for (int j = 0; j < 3; j++) {
-                out.print(GAME_BOARD[i][j]);
+                out.printf(GAME_BOARD[i][j]);
                 if (j < 2) {
                     out.print(" | ");
                 }
