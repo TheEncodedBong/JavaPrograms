@@ -3,6 +3,8 @@ package com.teb.practice.games;
 import static java.lang.System.exit;
 import static java.lang.System.out;
 
+import com.teb.practice.constants.WordGenerator;
+
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -20,8 +22,8 @@ public class Hangman {
     public static void main(String[] args) {
         out.printf("Welcome to the Hangman game!%n%n");
         out.printf("Rules:%n" +
-                "A random block of letters will appear on your screen that can have 1-4 blank characters.%n" +
-                "You have 5 attempts to guess the missing letters and save the man from hanging.%n%n");
+                "A random word will appear on your screen that can have 5-8 blank characters.%n" +
+                "You have 9 attempts to guess the word and save the man from hanging.%n%n");
         printPattern(errorCounter);
         playHangman();
 
@@ -51,7 +53,7 @@ public class Hangman {
                 out.printf("Error counter: %d%n", errorCounter);
 
                 verifyAlphabet = verifyAlphabet();
-            } else if (errorCounter < 5) {
+            } else if (errorCounter < 9) {
                 ++errorCounter;
                 printPattern(errorCounter);
 
@@ -59,7 +61,7 @@ public class Hangman {
                 out.printf(DISPLAY_MESSAGE, displayedWord);
                 out.printf("Error counter: %d%n", errorCounter);
 
-                if (errorCounter == 5) {
+                if (errorCounter == 9) {
                     out.printf("%nGame over! You lost!%n");
                     out.printf("Your word was: %s%n", completeWord);
                     exit(0);
@@ -94,31 +96,41 @@ public class Hangman {
         List<String> wordGenerator = new WordGenerator().getWords();
         completeWord = wordGenerator.get(RANDOM.nextInt(wordGenerator.size())).toUpperCase();
 
-        displayedWord = completeWord.replace(completeWord.charAt(RANDOM.nextInt(completeWord.length())), '_');
-        displayedWord = displayedWord.replace(displayedWord.charAt(RANDOM.nextInt(completeWord.length())), '_');
-        displayedWord = displayedWord.replace(displayedWord.charAt(RANDOM.nextInt(displayedWord.length())), '_');
+        displayedWord = "_".repeat(completeWord.length());
         return displayedWord;
     }
 
     private static void printPattern(int errorCounter) {
         switch (errorCounter) {
             case 0:
-                out.printf("|%n|%n|%n|%n|____________");
+                out.printf("|%n|%n|%n|%n|%n|____________");
                 break;
             case 1:
-                out.printf("|________%n|%n|%n|%n|____________%n");
+                out.printf("|________%n|%n|%n|%n|%n|____________%n");
                 break;
             case 2:
-                out.printf("|________%n|\t|%n|%n|%n|____________%n");
+                out.printf("|________%n|\t|%n|%n|%n|%n|____________%n");
                 break;
             case 3:
-                out.printf("|________%n|\t|%n|\tO%n|%n|____________%n");
+                out.printf("|________%n|\t|%n|\tO%n|%n|%n|____________%n");
                 break;
             case 4:
-                out.printf("|________%n|\t|%n|\tO\tO%n|\t\tX%n|____________%n");
+                out.printf("|________%n|\t|%n|\tO%n|\t|%n|%n|____________%n");
                 break;
             case 5:
-                out.printf("|________%n|\t|%n|\tO%n|\tX%n|____________%n");
+                out.printf("|________%n|\t  |%n|\t_ O%n|\t  |%n|%n|____________%n");
+                break;
+            case 6:
+                out.printf("|________%n|\t  |%n|\t_ O _%n|\t  |%n|%n|____________%n");
+                break;
+            case 7:
+                out.printf("|________%n|\t  |%n|\t_ O _%n|\t  |%n|\t /%n|____________%n");
+                break;
+            case 8:
+                out.printf("|________%n|\t  |%n|\t_ O _%n|\t  |%n|\t / \\%n|____________%n");
+                break;
+            case 9:
+                out.printf("|________%n|\t  |%n|\t  O%n|\t /|\\%n|\t / \\%n|____________%n");
                 break;
             default:
                 break;
