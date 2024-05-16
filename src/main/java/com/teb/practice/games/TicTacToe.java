@@ -17,7 +17,7 @@ public class TicTacToe {
 
         while (true) {
             out.printf("%nDo you want to play again? (y/n): ");
-            String option = SCAN.next();
+            String option = SCAN.nextLine();
             if (option.equals("y")) {
                 playTicTacToe();
             } else if (option.equals("n")) {
