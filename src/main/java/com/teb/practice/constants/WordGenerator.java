@@ -1,4 +1,4 @@
-package com.teb.practice.games;
+package com.teb.practice.constants;
 
 import java.util.List;
 
