@@ -1,0 +1,9 @@
+execution:
+  - concurrency: 25
+ramp-up: Im
+hold-for: Im
+scenario: quick-test
+scenarios: null
+quick-test: null
+requests:
+  - 'http://blazedemo.com'
